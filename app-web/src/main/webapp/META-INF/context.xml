@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/shop" type="javax.sql.DataSource" auth="Container"
+              url="jdbc:mysql://127.0.0.1/shop"
+              driverClassName="com.mysql.jdbc.Driver"
+              removeAbandoned="true"
+              logAbandoned="true"
+              removeAbandonedTimeout="10"/>
+</Context>
+

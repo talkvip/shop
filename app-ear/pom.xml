@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0    http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.koleslena.shop</groupId>
+    <artifactId>shop-ear</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>ear</packaging>
+
+    <parent>
+        <groupId>ru.koleslena.shop</groupId>
+        <artifactId>shop</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>ru.koleslena.shop</groupId>
+            <artifactId>shop-web</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <finalName>shop</finalName>
+    </properties>
+
+    <build>
+        <finalName>${finalName}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+
+
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>weblogic-maven-plugin</artifactId>
+                <version>2.9.3-prbb</version>
+                <configuration>
+                    <adminServerHostName>${weblogic.host}</adminServerHostName>
+                    <adminServerPort>${weblogic.port}</adminServerPort>
+                    <adminServerProtocol>${weblogic.protocol}</adminServerProtocol>
+                    <userId>${weblogic.userId}</userId>
+                    <password>${weblogic.password}</password>
+                    <upload>${weblogic.upload}</upload>
+                    <remote>${weblogic.remote}</remote>
+                    <verbose>${weblogic.verbose}</verbose>
+                    <debug>${weblogic.debug}</debug>
+                    <targetNames>${weblogic.target}</targetNames>
+                    <name>${finalName}</name>
+                    <contextPath>/${finalName}</contextPath>
+                    <noExit>${weblogic.noExit}</noExit>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>weblogic</groupId>
+                        <artifactId>wlfullclient</artifactId>
+                        <version>10.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
