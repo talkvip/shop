@@ -8,7 +8,7 @@
         <http use-expressions="true" create-session="never" auto-config="true">
                 <remember-me />
                 <intercept-url pattern="/" access="permitAll" />
-                <intercept-url pattern="/signin" access="permitAll" />
+                <intercept-url pattern="/registration" access="permitAll" />
                 <intercept-url pattern="/login" access="permitAll" />
                 <intercept-url pattern="/**/*.png" access="permitAll" />
                 <intercept-url pattern="/**/*.css" access="permitAll" />

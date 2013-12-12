@@ -16,12 +16,20 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+
+import ru.koleslena.shop.orm.dao.BaseDao;
+import ru.koleslena.shop.orm.dto.Role;
+import ru.koleslena.shop.orm.dto.User;
 
 public class SpringWicketWebSession extends AuthenticatedWebSession {
 
     private static final Logger logger = LoggerFactory.getLogger(SpringWicketWebSession.class);
+    
+    @SpringBean
+    private BaseDao baseDao;
     
     @SpringBean(name = "authenticationManager")
     private AuthenticationManager authenticationManager;
@@ -88,9 +96,19 @@ public class SpringWicketWebSession extends AuthenticatedWebSession {
         }
     }
     
-   /* public boolean hasRole(Role role) {
-    	logger.debug("has role " + role.getSpringSecurityRoleName());
-        return getRoles().hasRole(role.getSpringSecurityRoleName());
-    }*/
+    public boolean hasRole(String roleName) {
+    	logger.debug("has role " + roleName);
+        return getRoles().hasRole(roleName);
+    }
+    
+    public User getCurrentUser() {
+    	SecurityContext context = SecurityContextHolder.getContext();
+        if (context == null || context.getAuthentication() == null || context.getAuthentication().getPrincipal() == null) {
+            return null;
+        }
+        UserDetails user = (UserDetails) context.getAuthentication().getPrincipal();
+        
+        return baseDao.findById(User.class, user.getId());
+    }
     
 }

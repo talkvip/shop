@@ -32,6 +32,16 @@ public class BaseDaoImpl implements BaseDao {
 	}
 
 	@Override
+	public <T> List<T> findPage(String entityName, int first, int count) {
+		return em.createQuery("from " + entityName).setFirstResult(first).setMaxResults(count).getResultList();
+	}
+	
+	@Override
+	public Long count(String entityName) {
+		return (Long) em.createQuery("select count('x') from " + entityName).getSingleResult();
+	}
+	
+	@Override
 	@Transactional
 	public void persist(Object entity) {
 		logger.info("persist {}", entity.toString());

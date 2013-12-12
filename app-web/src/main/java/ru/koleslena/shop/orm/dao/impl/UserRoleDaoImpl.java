@@ -15,8 +15,6 @@ import ru.koleslena.shop.orm.dto.User;
 @Repository
 public class UserRoleDaoImpl implements UserRoleDao {
 	
-	public final String STRING_USER_ROLE_NAME = "user";
-	
 	@SpringBean
 	private BaseDao baseDao;
 	
@@ -33,7 +31,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	@Override
 	public User createUser(String login, String security) throws ShopException {
 		
-		Role userRole = getRoleBySpringName(STRING_USER_ROLE_NAME);
+		Role userRole = getRoleBySpringName(Role.STRING_USER_ROLE_NAME);
 		
 		if(userRole == null)
 			throw new ShopException("Не правильно настроены роли. Не найдена роль user.");

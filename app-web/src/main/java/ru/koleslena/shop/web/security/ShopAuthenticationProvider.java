@@ -33,7 +33,9 @@ public class ShopAuthenticationProvider implements AuthenticationProvider {
 				AUTHORITIES.add(new SimpleGrantedAuthority(role));
 			}
 			
-			return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials(), AUTHORITIES);
+			UserDetails userDetails = new UserDetails(user.getId(), user.getName());
+			
+			return new UsernamePasswordAuthenticationToken(userDetails, null, AUTHORITIES);
 		}
 			throw new BadCredentialsException("Неправильная пара логин-пароль");
 	}

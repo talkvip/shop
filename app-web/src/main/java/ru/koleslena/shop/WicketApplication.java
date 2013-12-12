@@ -9,7 +9,7 @@ import ru.koleslena.shop.web.GoodsListPage;
 import ru.koleslena.shop.web.GoodsPage;
 import ru.koleslena.shop.web.LoginPage;
 import ru.koleslena.shop.web.PurchaseListPage;
-import ru.koleslena.shop.web.SignInPage;
+import ru.koleslena.shop.web.RegistrationPage;
 import ru.koleslena.shop.web.security.SpringWicketWebSession;
 
 public class WicketApplication extends AuthenticatedWebApplication {
@@ -29,7 +29,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
 	public void mountPages() {
 		mountPage("login", LoginPage.class);
 		mountPage("purchaselist", PurchaseListPage.class);
-		mountPage("signin", SignInPage.class);
+		mountPage("registration", RegistrationPage.class);
 		mountPage("goods", GoodsPage.class);
 	}
 	

@@ -6,7 +6,11 @@ import java.util.List;
 public interface BaseDao {
 
 	public <T> T findById(Class<T> clazz, Serializable id);
+	
+	public <T> List<T> findPage(String entityName, int first, int count);
 
+	public Long count(String entityName);
+	
 	public <T> List<T> findAll(String entityName);
 
 	public void persist(Object entity);

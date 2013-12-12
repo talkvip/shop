@@ -1,5 +1,7 @@
 package ru.koleslena.shop.orm.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,19 +9,20 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class AbstractGenericEntity {
-	public static final String ID = "id";
+public abstract class AbstractGenericEntity implements Serializable {
 
+	private static final String ID = "id";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private Integer id;
+	private Long id;
 	
-	public Integer getId() {
+	public Long getId() {
 	    return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(Long id) {
 	    this.id = id;
 	}
 }

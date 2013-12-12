@@ -7,6 +7,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "SP_ROLE", schema = "shop")
 public class Role {
+	
+	public final static String STRING_USER_ROLE_NAME = "user";
+	public final static String STRING_ADMIN_ROLE_NAME = "admin";
 
 	@Column(name = "ROLE_ID")
 	private Integer id;
