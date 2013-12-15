@@ -14,7 +14,7 @@ target/*
 */.settings/*
 .settings/*
 opt/*
-logs/*
+*/logs/*
 bo-ear/target/*
 */MANIFEST.MF
 .springbeans

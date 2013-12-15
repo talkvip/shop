@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-<head>
-<meta charset="utf-8" />
-<title>Apache Wicket Quickstart</title>
-<link
-	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
-	rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="style.css" type="text/css" media="screen"
-	title="Stylesheet" />
-</head>
-<body>
-	<div id="hd">
-		<div id="logo">
-			<img src="logo.png" width="50px" height="50px" alt="Wicket Logo" />
-			<h1>Wicket / Spring Security Integration</h1>
-		</div>
-	</div>
-	<div id="bd">
-		<h2>Secure Page</h2>
-	</div>
-	<div id="ft"></div>
-</body>
+<wicket:extend>
+	<h2>Registration</h2>
+	<form wicket:id="editForm">
+		<p>
+			name: <input type="text" wicket:id="name"/>
+		</p>
+		<p>
+			description: <input type="text" wicket:id="descr"/>
+		</p>
+		<p>
+			price: <input type="text" wicket:id="price"/>
+		</p>
+		<p>
+			count: <input type="text" wicket:id="count"/>
+		</p>
+		<input type="submit" value="save"/>
+	</form>
+	
+</wicket:extend>
 </html>

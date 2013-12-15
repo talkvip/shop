@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
 <wicket:extend>
-	<table wicket:id="data">
+	<table class="dataview">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Count</th>
                 <th>Description</th>
             </tr>
         </thead>
@@ -13,19 +14,16 @@
             <tr wicket:id="rows">
                 <td wicket:id="name"></td>
                 <td wicket:id="price"></td>
+                <td wicket:id="count"></td>
                 <td wicket:id="description"></td>
                 
-                <td wicket:id="buy"></td>
-                <td wicket:id="edit"></td>
-                <td wicket:id="delete"></td>
+                <td wicket:id="buy">buy</td>
+                <td wicket:id="edit">edit</td>
+                <td wicket:id="delete">delete</td>
             </tr>
         </tbody>
-        <tfoot>
-            <tr>
-                <td wicket:id="navigator"></td>
-                <td wicket:id="create"></td>
-            </tr>
-        </tfoot>
     </table>
-<wicket:extend>
+    <div wicket:id="navigator"></div>
+    <a href="#" wicket:id="create">create</a>
+</wicket:extend>
 </html>

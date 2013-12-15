@@ -2,7 +2,8 @@ package ru.koleslena.shop.service.impl;
 
 import java.util.List;
 
-import org.apache.wicket.spring.injection.annot.SpringBean;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
 import ru.koleslena.shop.orm.dao.BaseDao;
@@ -12,9 +13,9 @@ import ru.koleslena.shop.service.GoodsService;
 @Service
 public class GoodsServiceImpl implements GoodsService {
 	
-	@SpringBean
+	@Inject
 	private BaseDao baseDao;
-
+	
 	@Override
 	public void createGoods(Goods goods) {
 		baseDao.persist(goods);
@@ -33,5 +34,10 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<Goods> getAllGoods() {
 		return baseDao.findAll(Goods.class.getSimpleName());
+	}
+
+	@Override
+	public Goods get(Long id) {
+		return baseDao.findById(Goods.class, id);
 	}
 }

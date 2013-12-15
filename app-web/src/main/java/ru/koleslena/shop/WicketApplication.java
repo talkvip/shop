@@ -22,13 +22,14 @@ public class WicketApplication extends AuthenticatedWebApplication {
 	@Override
 	protected void init() {
 		super.init();
-		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 		mountPages();
+		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 	}
 	
 	public void mountPages() {
 		mountPage("login", LoginPage.class);
 		mountPage("purchaselist", PurchaseListPage.class);
+		mountPage("goodslist", GoodsListPage.class);
 		mountPage("registration", RegistrationPage.class);
 		mountPage("goods", GoodsPage.class);
 	}

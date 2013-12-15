@@ -1,9 +1,12 @@
 package ru.koleslena.shop.orm.dao.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.inject.Inject;
 
-import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ru.koleslena.shop.exception.ShopException;
@@ -15,17 +18,28 @@ import ru.koleslena.shop.orm.dto.User;
 @Repository
 public class UserRoleDaoImpl implements UserRoleDao {
 	
-	@SpringBean
+	private static final Logger logger = LoggerFactory.getLogger(BaseDaoImpl.class);
+	
+	@Inject
 	private BaseDao baseDao;
-	
-	@PersistenceContext 
-	private EntityManager em;
-	
+
+	@Autowired
+	private SessionFactory sessionFactory;
+
+    /**
+     * Вспомогательный метод для получения текущей сессии
+     *
+     * @return
+     */
+    protected Session session() {
+        return sessionFactory.getCurrentSession();
+    }
+    
 	@Override
 	public User authUser(String login, String security) {
-		return (User) em.createQuery("FROM User as u WHERE u.name like :name AND u.password like :pass ")
+		return (User) session().createQuery("FROM User as u WHERE u.name like :name AND u.password like :pass ")
 				.setParameter("name", login)
-				.setParameter("pass", security).getSingleResult();
+				.setParameter("pass", security).uniqueResult();
 	}
 	
 	@Override
@@ -36,12 +50,10 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		if(userRole == null)
 			throw new ShopException("Не правильно настроены роли. Не найдена роль user.");
 		
-		Integer roleId = userRole.getId();
-		
 		User user = new User();
 		user.setName(login);
 		user.setPassword(security);
-		user.setRole((Role)baseDao.findById(Role.class, roleId));
+		user.setRole(userRole);
 		
 		baseDao.persist(user);
 		
@@ -49,7 +61,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	}
 	
 	public Role getRoleBySpringName(String name) {
-		return (Role) em.createQuery("FROM Role as r WHERE r.springName like :name")
-				.setParameter("name", name).getSingleResult();
+		return (Role) session().createQuery("FROM Role as r WHERE r.springName like :name")
+				.setParameter("name", name).uniqueResult();
 	}
 }

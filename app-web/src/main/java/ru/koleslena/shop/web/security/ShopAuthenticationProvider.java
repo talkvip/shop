@@ -1,5 +1,6 @@
 package ru.koleslena.shop.web.security;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import ru.koleslena.shop.orm.dto.User;
 import ru.koleslena.shop.service.UserService;
 
-public class ShopAuthenticationProvider implements AuthenticationProvider {
+public class ShopAuthenticationProvider implements AuthenticationProvider, Serializable {
 
 	@Autowired
 	private UserService userService;
@@ -23,7 +24,6 @@ public class ShopAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
-		
 		User user = userService.authorizeUser(authentication.getName(), authentication.getCredentials().toString());
 		
 		if (user != null) {
@@ -42,7 +42,7 @@ public class ShopAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public boolean supports(Class<?> authentication) {
-		return false;
+		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
 	}
 
 }

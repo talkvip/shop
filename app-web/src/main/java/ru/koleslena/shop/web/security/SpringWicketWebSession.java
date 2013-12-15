@@ -21,7 +21,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
 import ru.koleslena.shop.orm.dao.BaseDao;
-import ru.koleslena.shop.orm.dto.Role;
 import ru.koleslena.shop.orm.dto.User;
 
 public class SpringWicketWebSession extends AuthenticatedWebSession {
@@ -97,7 +96,6 @@ public class SpringWicketWebSession extends AuthenticatedWebSession {
     }
     
     public boolean hasRole(String roleName) {
-    	logger.debug("has role " + roleName);
         return getRoles().hasRole(roleName);
     }
     
@@ -106,9 +104,13 @@ public class SpringWicketWebSession extends AuthenticatedWebSession {
         if (context == null || context.getAuthentication() == null || context.getAuthentication().getPrincipal() == null) {
             return null;
         }
-        UserDetails user = (UserDetails) context.getAuthentication().getPrincipal();
         
-        return baseDao.findById(User.class, user.getId());
+        if(context.getAuthentication().getPrincipal() instanceof UserDetails) {
+        	UserDetails user = (UserDetails) context.getAuthentication().getPrincipal();
+        	return baseDao.findById(User.class, user.getId());
+        }
+        
+        return null;
     }
     
 }

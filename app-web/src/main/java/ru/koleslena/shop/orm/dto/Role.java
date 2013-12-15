@@ -1,16 +1,20 @@
 package ru.koleslena.shop.orm.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "SP_ROLE", schema = "shop")
-public class Role {
+public class Role implements Serializable {
 	
 	public final static String STRING_USER_ROLE_NAME = "user";
 	public final static String STRING_ADMIN_ROLE_NAME = "admin";
 
+	@Id
 	@Column(name = "ROLE_ID")
 	private Integer id;
 	
@@ -46,8 +50,8 @@ public class Role {
 	
 	@Override
 	public String toString() {
-		return new StringBuilder("Role: ").append("id=").append(getId())
-										.append("name=").append(getName())
-										.append("apringName=").append(getSpringName()).toString();
+		return new StringBuilder("Role:").append(" id=").append(getId())
+										.append(", name=").append(getName())
+										.append(", apringName=").append(getSpringName()).toString();
 	}
 }

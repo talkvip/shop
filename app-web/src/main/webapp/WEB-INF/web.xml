@@ -16,11 +16,6 @@
         </param-value>
     </context-param>
 
-    <!-- Создаёт контейнер Spring, разделяемый всеми сервлетами и фильтрами -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -67,5 +62,9 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
+    <!-- Создаёт контейнер Spring, разделяемый всеми сервлетами и фильтрами -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
 </web-app>

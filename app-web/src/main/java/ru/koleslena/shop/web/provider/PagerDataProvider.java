@@ -7,11 +7,16 @@ import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
+import ru.koleslena.shop.BaseInjectBean;
 import ru.koleslena.shop.orm.dao.BaseDao;
 
-public class PagerDataProvider<T> implements IDataProvider<T> {
+public class PagerDataProvider<T> extends BaseInjectBean implements IDataProvider<T> {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PagerDataProvider.class);
 	
 	@SpringBean
 	private BaseDao baseDao;
@@ -19,6 +24,7 @@ public class PagerDataProvider<T> implements IDataProvider<T> {
 	private Class objectClass;
 	
 	public PagerDataProvider(Class clazz) {
+		super();
 		Assert.notNull(clazz, "Class must be specified for DataProvider");
 		objectClass = clazz;
 	}

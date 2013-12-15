@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-<head>
-<meta charset="utf-8" />
-<title>Apache Wicket Quickstart</title>
-
-</head>
-<body>
-        <div id="hd">
-                <div id="logo">
-                        
-                        <h1>Wicket / Spring Security Integration</h1>
-                </div>
-        </div>
-        <div id="bd">
-                <h2>Secure Page</h2>
-        </div>
-        <div id="ft"></div>
-</body>
+<wicket:extend>
+	<h2>Registration</h2>
+	<form wicket:id="registrationForm">
+		<p>
+			Username: <input type="text" wicket:id="username"/>
+		</p>
+		<p>
+			Password: <input type="password" wicket:id="password"/>
+		</p>
+		<p>
+			Password again: <input type="password" wicket:id="passwordAgain"/>
+		</p>	
+		<input type="submit" value="signUp"/>
+	</form>
+	
+</wicket:extend>
 </html>

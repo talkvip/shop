@@ -18,12 +18,13 @@
 	<!-- Включаем опцию использования конфигурационных аннотаций (@Annotation-based configuration)-->
 	<context:annotation-config />
 
-    <context:component-scan base-package="ru.koleslena.shop" />
-
+	<context:component-scan base-package="ru.koleslena.shop.orm.dao.impl" />
+    <context:component-scan base-package="ru.koleslena.shop.service" />
 
     <!-- Определяем папки, в которых будем автоматически искать бины-компоненты (@Component, @Service)  -->
 
 	<!-- Файл с настройками ресурсов для работы с данными (Data Access Resources) -->
 	<import resource="data.xml" />
+	<import resource="security.xml" />
 
 </beans>
