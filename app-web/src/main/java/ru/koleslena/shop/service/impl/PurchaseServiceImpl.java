@@ -49,15 +49,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 			Long count = goods.getCount();
 			goods.setCount(--count);
 			
-			try {
-                Object monitor = new Object();
-                synchronized (monitor) {
-                    monitor.wait(3000);
-                }
-            } catch (Exception ex) {
-                throw new ShopException(ex);
-            }
-			
 			baseDao.merge(goods);
 			
 			User user = baseDao.findById(User.class, userId);
