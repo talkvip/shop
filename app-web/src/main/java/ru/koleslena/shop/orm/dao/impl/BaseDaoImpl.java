@@ -34,26 +34,22 @@ public class BaseDaoImpl implements BaseDao {
         return sessionFactory.getCurrentSession();
     }
 	
-	@Transactional
 	@Override
 	public <T> T findById(Class<T> clazz, Serializable id) {
 		return (T) session().get(clazz, id);
 	}
 	
-	@Transactional
 	@Override
 	public <T> List<T> findAll(String entityName) {
 		return session().createQuery("from " + entityName).list();
 	}
 
-	@Transactional
 	@Override
 	public <T> List<T> findPage(String entityName, int first, int count) {
 		logger.info("findPage {}, {}, {} ", entityName, first, count);
 		return session().createQuery("from " + entityName).setFirstResult(first).setMaxResults(count).list();
 	}
 	
-	@Transactional
 	@Override
 	public Long count(String entityName) {
 		logger.info("get count {}", entityName);
@@ -81,7 +77,6 @@ public class BaseDaoImpl implements BaseDao {
 		session().delete(entity);
 	}
 
-	@Transactional
 	@Override
 	public <T> void deleteById(Class<T> clazz, Serializable id) {
 		logger.info("delete by id {}", id.toString());
