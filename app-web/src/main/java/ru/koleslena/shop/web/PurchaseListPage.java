@@ -12,6 +12,10 @@ import ru.koleslena.shop.orm.dto.Purchase;
 import ru.koleslena.shop.orm.dto.Role;
 import ru.koleslena.shop.web.provider.PagerDataProvider;
 
+/**
+ * @author koleslena
+ *
+ */
 public class PurchaseListPage extends BasePage {
 	private static final Logger logger = LoggerFactory.getLogger(PurchaseListPage.class);
 	

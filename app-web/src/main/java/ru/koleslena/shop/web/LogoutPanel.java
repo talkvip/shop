@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import ru.koleslena.shop.web.security.SpringWicketWebSession;
 
+/**
+ * @author koleslena
+ *
+ */
 public class LogoutPanel extends Panel {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LogoutPanel.class);

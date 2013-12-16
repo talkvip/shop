@@ -13,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ru.koleslena.shop.orm.dao.BaseDao;
 
+/**
+ * @author koleslena
+ *
+ */
 @Repository
 public class BaseDaoImpl implements BaseDao {
 

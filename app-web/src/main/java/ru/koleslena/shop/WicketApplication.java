@@ -13,6 +13,10 @@ import ru.koleslena.shop.web.PurchaseListPage;
 import ru.koleslena.shop.web.RegistrationPage;
 import ru.koleslena.shop.web.security.SpringWicketWebSession;
 
+/**
+ * @author koleslena
+ *
+ */
 public class WicketApplication extends AuthenticatedWebApplication {
 
 	@Override

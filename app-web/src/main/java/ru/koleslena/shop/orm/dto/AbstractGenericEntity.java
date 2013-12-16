@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.MappedSuperclass;
 
+/**
+ * @author koleslena
+ *
+ */
 @MappedSuperclass
 public abstract class AbstractGenericEntity implements Serializable {
 

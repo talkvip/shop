@@ -16,6 +16,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import ru.koleslena.shop.orm.dto.User;
 import ru.koleslena.shop.service.UserService;
 
+/**
+ * @author koleslena
+ *
+ */
 public class ShopAuthenticationProvider implements AuthenticationProvider, Serializable {
 
 	@Autowired

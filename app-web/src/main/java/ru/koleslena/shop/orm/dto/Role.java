@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author koleslena
+ *
+ */
 @Entity
 @Table(name = "SP_ROLE", schema = "shop")
 public class Role implements Serializable {

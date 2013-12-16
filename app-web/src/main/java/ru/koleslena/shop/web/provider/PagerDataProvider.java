@@ -14,6 +14,11 @@ import org.springframework.util.Assert;
 import ru.koleslena.shop.BaseInjectBean;
 import ru.koleslena.shop.orm.dao.BaseDao;
 
+/**
+ * @author koleslena
+ *
+ * @param <T>
+ */
 public class PagerDataProvider<T> extends BaseInjectBean implements IDataProvider<T> {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PagerDataProvider.class);

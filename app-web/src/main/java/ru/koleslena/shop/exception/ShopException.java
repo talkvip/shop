@@ -1,5 +1,9 @@
 package ru.koleslena.shop.exception;
 
+/**
+ * @author koleslena
+ *
+ */
 public class ShopException extends Exception {
 
 	private static final long serialVersionUID = 1L;

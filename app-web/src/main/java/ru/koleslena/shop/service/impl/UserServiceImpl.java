@@ -12,6 +12,10 @@ import ru.koleslena.shop.orm.dao.UserRoleDao;
 import ru.koleslena.shop.orm.dto.User;
 import ru.koleslena.shop.service.UserService;
 
+/**
+ * @author koleslena
+ *
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

@@ -5,6 +5,10 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 import ru.koleslena.shop.web.security.SpringWicketWebSession;
 
+/**
+ * @author koleslena
+ *
+ */
 public class BasePage extends WebPage {
 
 	public BasePage() {

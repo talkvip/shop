@@ -3,6 +3,10 @@ package ru.koleslena.shop.orm.dao;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author koleslena
+ *
+ */
 public interface BaseDao {
 
 	public <T> T findById(Class<T> clazz, Serializable id);

@@ -10,6 +10,10 @@ import ru.koleslena.shop.orm.dao.BaseDao;
 import ru.koleslena.shop.orm.dto.Goods;
 import ru.koleslena.shop.service.GoodsService;
 
+/**
+ * @author koleslena
+ *
+ */
 @Service
 public class GoodsServiceImpl implements GoodsService {
 	

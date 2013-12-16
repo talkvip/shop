@@ -16,6 +16,10 @@ import ru.koleslena.shop.orm.dto.Purchase;
 import ru.koleslena.shop.orm.dto.User;
 import ru.koleslena.shop.service.PurchaseService;
 
+/**
+ * @author koleslena
+ *
+ */
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
 

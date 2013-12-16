@@ -21,6 +21,10 @@ import ru.koleslena.shop.service.GoodsService;
 import ru.koleslena.shop.service.PurchaseService;
 import ru.koleslena.shop.web.provider.PagerDataProvider;
 
+/**
+ * @author koleslena
+ *
+ */
 public class GoodsListPage extends BasePage {
 	
 	private static final Logger logger = LoggerFactory.getLogger(GoodsListPage.class);

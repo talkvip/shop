@@ -2,6 +2,10 @@ package ru.koleslena.shop.web.security;
 
 import java.io.Serializable;
 
+/**
+ * @author koleslena
+ *
+ */
 public class UserDetails implements Serializable {
 
     private final Long id;

@@ -15,6 +15,10 @@ import ru.koleslena.shop.orm.dao.UserRoleDao;
 import ru.koleslena.shop.orm.dto.Role;
 import ru.koleslena.shop.orm.dto.User;
 
+/**
+ * @author koleslena
+ *
+ */
 @Repository
 public class UserRoleDaoImpl implements UserRoleDao {
 	

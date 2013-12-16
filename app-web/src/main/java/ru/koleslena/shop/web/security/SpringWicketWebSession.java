@@ -23,6 +23,10 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 import ru.koleslena.shop.orm.dao.BaseDao;
 import ru.koleslena.shop.orm.dto.User;
 
+/**
+ * @author koleslena
+ *
+ */
 public class SpringWicketWebSession extends AuthenticatedWebSession {
 
     private static final Logger logger = LoggerFactory.getLogger(SpringWicketWebSession.class);

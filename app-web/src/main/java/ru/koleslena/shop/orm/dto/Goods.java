@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author koleslena
+ *
+ */
 @Entity
 @Table(name = "SP_GOODS", schema = "shop")
 public class Goods extends AbstractGenericEntity {

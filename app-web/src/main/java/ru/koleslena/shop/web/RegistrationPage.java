@@ -13,7 +13,10 @@ import org.slf4j.LoggerFactory;
 import ru.koleslena.shop.exception.ShopException;
 import ru.koleslena.shop.service.UserService;
 
-
+/**
+ * @author koleslena
+ *
+ */
 public class RegistrationPage extends BasePage {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RegistrationPage.class);

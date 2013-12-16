@@ -4,6 +4,10 @@ import java.util.List;
 
 import ru.koleslena.shop.orm.dto.Goods;
 
+/**
+ * @author koleslena
+ *
+ */
 public interface GoodsService {
 
 	public void createGoods(Goods goods);

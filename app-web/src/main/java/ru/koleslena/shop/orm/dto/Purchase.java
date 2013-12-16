@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * @author koleslena
+ *
+ */
 @Entity
 @Table(name = "SP_PURCHASE", schema = "shop")
 public class Purchase extends AbstractGenericEntity {

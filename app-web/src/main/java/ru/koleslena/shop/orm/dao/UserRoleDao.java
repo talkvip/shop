@@ -4,6 +4,10 @@ import ru.koleslena.shop.exception.ShopException;
 import ru.koleslena.shop.orm.dto.Role;
 import ru.koleslena.shop.orm.dto.User;
 
+/**
+ * @author koleslena
+ *
+ */
 public interface UserRoleDao {
 
 	public User authUser(String login, String security);

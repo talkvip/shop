@@ -5,6 +5,10 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import ru.koleslena.shop.web.security.SpringWicketWebSession;
 
+/**
+ * @author koleslena
+ *
+ */
 public class LoginPanel extends Panel {
 	public LoginPanel(String id) {
 		super(id);

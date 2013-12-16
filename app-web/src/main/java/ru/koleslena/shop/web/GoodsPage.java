@@ -14,6 +14,10 @@ import ru.koleslena.shop.orm.dto.Goods;
 import ru.koleslena.shop.orm.dto.Role;
 import ru.koleslena.shop.service.GoodsService;
 
+/**
+ * @author koleslena
+ *
+ */
 public class GoodsPage extends BasePage {
 	
 	private static final Logger logger = LoggerFactory.getLogger(GoodsPage.class);
