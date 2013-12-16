@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserService {
 	@Inject
     private UserRoleDao userRoleDao;
 	
-    @Transactional
     @Override
     public User authorizeUser(String login, String password) {
 
@@ -33,7 +32,6 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Transactional
     @Override
     public User createUser(String login, String password) throws ShopException {
 
