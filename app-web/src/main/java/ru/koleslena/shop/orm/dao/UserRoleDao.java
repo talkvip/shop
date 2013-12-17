@@ -12,7 +12,7 @@ public interface UserRoleDao {
 
 	public User authUser(String login, String security);
 
-	public User createUser(String login, String security) throws ShopException;
+	public void createUser(String login, String security) throws ShopException;
 	
 	public Role getRoleBySpringName(String name);
 

@@ -11,6 +11,8 @@ public interface UserService {
 
 	public User authorizeUser(String login, String password);
 
-	public User createUser(String login, String password) throws ShopException;
+	public void createUser(String login, String password) throws ShopException;
+	
+	public User get(Long id);
 
 }

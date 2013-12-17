@@ -47,7 +47,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	}
 	
 	@Override
-	public User createUser(String login, String security) throws ShopException {
+	public void createUser(String login, String security) throws ShopException {
 		
 		Role userRole = getRoleBySpringName(Role.STRING_USER_ROLE_NAME);
 		
@@ -61,7 +61,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		
 		baseDao.persist(user);
 		
-		return user;
+		return;
 	}
 	
 	public Role getRoleBySpringName(String name) {

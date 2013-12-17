@@ -20,8 +20,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
-import ru.koleslena.shop.orm.dao.BaseDao;
 import ru.koleslena.shop.orm.dto.User;
+import ru.koleslena.shop.service.UserService;
 
 /**
  * @author koleslena
@@ -32,7 +32,7 @@ public class SpringWicketWebSession extends AuthenticatedWebSession {
     private static final Logger logger = LoggerFactory.getLogger(SpringWicketWebSession.class);
     
     @SpringBean
-    private BaseDao baseDao;
+    private UserService userService;
     
     @SpringBean(name = "authenticationManager")
     private AuthenticationManager authenticationManager;
@@ -111,7 +111,7 @@ public class SpringWicketWebSession extends AuthenticatedWebSession {
         
         if(context.getAuthentication().getPrincipal() instanceof UserDetails) {
         	UserDetails user = (UserDetails) context.getAuthentication().getPrincipal();
-        	return baseDao.findById(User.class, user.getId());
+        	return userService.get(user.getId());
         }
         
         return null;

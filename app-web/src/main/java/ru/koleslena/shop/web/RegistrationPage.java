@@ -1,8 +1,10 @@
 package ru.koleslena.shop.web;
 
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.form.validation.EqualPasswordInputValidator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -26,7 +28,8 @@ public class RegistrationPage extends BasePage {
 	
 	public RegistrationPage(PageParameters parameters) {
 		super();
-		add(new RegistrationForm("registrationForm"));
+		Form<Void> form = new RegistrationForm("registrationForm");
+		add(form);
 	}
 
 	private class RegistrationForm extends StatelessForm<Void> {
@@ -39,12 +42,15 @@ public class RegistrationPage extends BasePage {
 		public RegistrationForm(String id) {
 			super(id);
 			setModel(new CompoundPropertyModel(this));
-			add(new RequiredTextField<String>("username"));
 			
+			TextField<String> uname = new RequiredTextField<String>("username");
 			PasswordTextField pass = new PasswordTextField("password");
 			PasswordTextField passAgain = new PasswordTextField("passwordAgain");
+			
+			add(uname);
 			add(pass);
 			add(passAgain);
+			
 			add(new EqualPasswordInputValidator(pass, passAgain));
 		}
 
