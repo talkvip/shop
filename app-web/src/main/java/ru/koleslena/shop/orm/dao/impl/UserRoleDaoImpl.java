@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ru.koleslena.shop.exception.ShopException;
 import ru.koleslena.shop.orm.dao.BaseDao;
@@ -40,6 +41,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
     }
     
 	@Override
+	@Transactional(readOnly=true)
 	public User authUser(String login, String security) {
 		return (User) session().createQuery("FROM User as u WHERE u.name like :name AND u.password like :pass ")
 				.setParameter("name", login)
@@ -64,6 +66,8 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		return;
 	}
 	
+	@Override
+	@Transactional(readOnly=true)
 	public Role getRoleBySpringName(String name) {
 		return (Role) session().createQuery("FROM Role as r WHERE r.springName like :name")
 				.setParameter("name", name).uniqueResult();
