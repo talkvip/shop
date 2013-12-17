@@ -17,13 +17,22 @@
                 <td wicket:id="count"></td>
                 <td wicket:id="description"></td>
                 
-                <td wicket:id="buy">buy</td>
+                <td><form wicket:id="buyForm">
+						number: <input type="text" wicket:id="number"/>
+                		<input type="submit" value="buy"/>
+                	</form>
+                </td>
                 <td wicket:id="edit">edit</td>
                 <td wicket:id="delete">delete</td>
             </tr>
         </tbody>
     </table>
     <div wicket:id="navigator"></div>
-    <a href="#" wicket:id="create">create</a>
+    <p>
+    	<a href="#" wicket:id="create">create</a>
+    </p>
+    <p>
+   		<a href="#" wicket:id="toPurchaseList">list of purchases</a>
+   	</p>
 </wicket:extend>
 </html>

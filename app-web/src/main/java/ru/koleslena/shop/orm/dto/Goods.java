@@ -1,5 +1,8 @@
 package ru.koleslena.shop.orm.dto;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +22,9 @@ public class Goods extends AbstractGenericEntity {
 
 	private String descr;
 
-	private Double price;
+	private BigDecimal price;
 
-	private Long count;
+	private BigInteger count;
 
 	private Long id;
 	
@@ -55,20 +58,20 @@ public class Goods extends AbstractGenericEntity {
 	}
 	
 	@Column(name = "GOODS_PRICE")
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	
 	@Column(name = "GOODS_COUNT")
-	public Long getCount() {
+	public BigInteger getCount() {
 		return count;
 	}
 
-	public void setCount(Long count) {
+	public void setCount(BigInteger count) {
 		this.count = count;
 	}
 	

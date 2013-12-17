@@ -1,5 +1,7 @@
 package ru.koleslena.shop.service.impl;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -29,12 +31,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private BaseDao baseDao;
 	
 	@Override
-	public void createPurchase(Long userId, Long goodsId) throws ShopException {
-    	if(isGoodsEnough(goodsId)) {
+	public void createPurchase(Long userId, Long goodsId, BigInteger number) throws ShopException {
+    	if(isGoodsEnough(goodsId, number)) {
 			try {
 				synchronized (this) {
 			        logger.debug("trying to process {}, {}", goodsId, userId);
-					processPurchase(userId, goodsId);
+					processPurchase(userId, goodsId, number);
 			        logger.debug("processed {}, {} purchase", goodsId, userId);
 				}
 			 } catch (Exception ex) {
@@ -46,23 +48,21 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 	
 	@Transactional(rollbackFor=Exception.class)
-	private void processPurchase(Long userId, Long goodsId) throws ShopException {
+	private void processPurchase(Long userId, Long goodsId, BigInteger number) throws ShopException {
 		logger.debug("synchronized {}", userId);
-		if(isGoodsEnough(goodsId)) {
+		if(isGoodsEnough(goodsId, number)) {
 			Goods goods = baseDao.findById(Goods.class, goodsId);
-			Long count = goods.getCount();
-			goods.setCount(--count);
+			BigInteger count = goods.getCount();
+			goods.setCount(count.subtract(number));
 			
 			baseDao.merge(goods);
-			
 			User user = baseDao.findById(User.class, userId);
-			
 			Purchase purchase = new Purchase();
 			
 			purchase.setGoods(goods);
 			purchase.setUser(user);
 			purchase.setPurchaseDate(new Date());
-			purchase.setPurchasePrice(goods.getPrice());
+			purchase.setPurchasePrice(goods.getPrice().multiply(new BigDecimal(number)));
 			
 			baseDao.persist(purchase);
 		} else
@@ -70,7 +70,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Transactional(readOnly=true)
-	private boolean isGoodsEnough(Long id) {
-		return baseDao.findById(Goods.class, id).getCount().compareTo(new Long(0)) > 0;
+	private boolean isGoodsEnough(Long id, BigInteger number) {
+		BigInteger count = baseDao.findById(Goods.class, id).getCount();
+		BigInteger diff = count.subtract(number);
+		return diff.compareTo(BigInteger.ZERO) >= 0;
 	}
 }

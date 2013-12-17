@@ -1,13 +1,21 @@
 package ru.koleslena.shop.web;
 
+import java.io.Serializable;
+import java.math.BigInteger;
+
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.RequiredTextField;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -49,14 +57,22 @@ public class GoodsListPage extends BasePage {
 				item.add(new Label("count", good.getCount()));
 				item.add(new Label("description", good.getDescr()));
 				
-				Link<Goods> buy = new Link<Goods>("buy", item.getModel()) {
+				BuyItem buyItem = new BuyItem(good.getId());
+				IModel<BuyItem> formModel = new CompoundPropertyModel<BuyItem>(buyItem);
+				
+				Form<BuyItem> buyForm = new Form<BuyItem>("buyForm", formModel) {
 					@Override
-					public void onClick() {
+					public boolean isVisible() {
+						return getWicketWebSession().hasRole(Role.STRING_USER_ROLE_NAME);
+					}
+					
+					@Override
+					protected void onSubmit() {
 						if(getWicketWebSession().hasRole(Role.STRING_USER_ROLE_NAME)) {
 							try {
-								Goods goods = getModelObject();
+								BuyItem buyIt = getModelObject();
 								User currentUser = getWicketWebSession().getCurrentUser();
-								purchaseService.createPurchase(currentUser.getId(), goods.getId());
+								purchaseService.createPurchase(currentUser.getId(), buyIt.getId(), buyIt.getNumber());
 							} catch (ShopException exc) {
 								logger.error("trying to buy. Error {}", exc.getMessage());
 								getPage().error(exc.getMessage());
@@ -65,13 +81,13 @@ public class GoodsListPage extends BasePage {
 						}
 						getPage().error("You are not authorized");
 					}
-					
-					@Override
-					public boolean isVisible() {
-						return getWicketWebSession().hasRole(Role.STRING_USER_ROLE_NAME);
-					}
 				};
-				item.add(buy);
+				
+				TextField<Integer> number = new RequiredTextField<Integer>("number", Integer.class);
+				
+				buyForm.add(number);
+				
+				item.add(buyForm);
 				
 				Link<Goods> edit = new Link<Goods>("edit", item.getModel()) {
 					@Override
@@ -138,8 +154,47 @@ public class GoodsListPage extends BasePage {
 		};
 		add(create);
 		
+		Link<Void> toPurchaseList = new Link<Void>("toPurchaseList") {
+			@Override
+			public void onClick() {
+				if(getWicketWebSession().hasRole(Role.STRING_ADMIN_ROLE_NAME)) {
+					setResponsePage(PurchaseListPage.class);
+				} else 
+					getPage().error("You do not have rights!");
+			}
+			
+			@Override
+			public boolean isVisible() {
+				return getWicketWebSession().hasRole(Role.STRING_ADMIN_ROLE_NAME);
+			}
+		};
+		add(toPurchaseList);
+		
 		add(dataView);
 		
 		add(new PagingNavigator("navigator", dataView));
+	}
+	
+	class BuyItem implements Serializable {
+		private Long id;
+		private BigInteger number;
+		
+		public BuyItem(Long id) {
+			super();
+			this.id = id;
+			this.number = BigInteger.ONE;
+		}
+		public Long getId() {
+			return id;
+		}
+		public void setId(Long id) {
+			this.id = id;
+		}
+		public BigInteger getNumber() {
+			return number;
+		}
+		public void setNumber(BigInteger number) {
+			this.number = number;
+		}
 	}
 }

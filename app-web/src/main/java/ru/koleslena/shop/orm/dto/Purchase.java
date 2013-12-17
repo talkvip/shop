@@ -1,5 +1,6 @@
 package ru.koleslena.shop.orm.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class Purchase extends AbstractGenericEntity {
 
 	private Date purchaseDate;
 
-	private Double purchasePrice;
+	private BigDecimal purchasePrice;
 
 	private Long id;
 	
@@ -71,11 +72,11 @@ public class Purchase extends AbstractGenericEntity {
 	}
 	
 	@Column(name = "PURCHASE_PRICE")
-	public Double getPurchasePrice() {
+	public BigDecimal getPurchasePrice() {
 		return purchasePrice;
 	}
 
-	public void setPurchasePrice(Double purchasePrice) {
+	public void setPurchasePrice(BigDecimal purchasePrice) {
 		this.purchasePrice = purchasePrice;
 	}
 	
