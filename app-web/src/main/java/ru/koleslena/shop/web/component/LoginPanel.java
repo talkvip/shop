@@ -1,8 +1,10 @@
-package ru.koleslena.shop.web;
+package ru.koleslena.shop.web.component;
 
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import ru.koleslena.shop.web.LoginPage;
+import ru.koleslena.shop.web.RegistrationPage;
 import ru.koleslena.shop.web.security.SpringWicketWebSession;
 
 /**

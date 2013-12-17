@@ -1,4 +1,4 @@
-package ru.koleslena.shop.web;
+package ru.koleslena.shop.web.component;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;

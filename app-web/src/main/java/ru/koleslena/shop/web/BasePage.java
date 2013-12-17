@@ -3,6 +3,8 @@ package ru.koleslena.shop.web;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
+import ru.koleslena.shop.web.component.LoginPanel;
+import ru.koleslena.shop.web.component.LogoutPanel;
 import ru.koleslena.shop.web.security.SpringWicketWebSession;
 
 /**
