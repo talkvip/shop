@@ -35,22 +35,26 @@ public class BaseDaoImpl implements BaseDao {
     }
 	
 	@Override
+	@Transactional(readOnly=true)
 	public <T> T findById(Class<T> clazz, Serializable id) {
 		return (T) session().get(clazz, id);
 	}
 	
 	@Override
+	@Transactional(readOnly=true)
 	public <T> List<T> findAll(String entityName) {
 		return session().createQuery("from " + entityName).list();
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public <T> List<T> findPage(String entityName, int first, int count) {
 		logger.info("findPage {}, {}, {} ", entityName, first, count);
 		return session().createQuery("from " + entityName).setFirstResult(first).setMaxResults(count).list();
 	}
 	
 	@Override
+	@Transactional(readOnly=true)
 	public Long count(String entityName) {
 		logger.info("get count {}", entityName);
 		return (Long) session().createQuery("select count(*) from " + entityName).uniqueResult();

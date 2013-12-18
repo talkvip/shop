@@ -44,7 +44,7 @@ public class PurchaseServiceImpl implements PurchaseService {
                 throw new ShopException(ex);
             }
     	} else
-    		throw new ShopException("Goods, " + goodsId + " is not enouth");
+    		throw new ShopException("There is not enough goods");
 	}
 	
 	@Transactional(rollbackFor=Exception.class)
@@ -66,7 +66,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 			
 			baseDao.persist(purchase);
 		} else
-			throw new ShopException("Goods - " + goodsId + " is not enouth");
+			throw new ShopException("There is not enough goods");
 	}
 
 	@Transactional(readOnly=true)
